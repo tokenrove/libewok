@@ -31,6 +31,12 @@
 #  define be16toh(x) betoh16(x)
 #  define be32toh(x) betoh32(x)
 #  define be64toh(x) betoh64(x)
+#elif defined(__APPLE__)
+#  include <arpa/inet.h>
+#  define htobe32(x) htonl(x)
+#  define htobe64(x) htonll(x)
+#  define be32toh(x) ntohl(x)
+#  define be64toh(x) ntohll(x)
 #endif
 
 int ewah_serialize(struct ewah_bitmap *self, int fd)
